@@ -1,0 +1,368 @@
+:root {
+  line-height: 1.5;
+  color-scheme: light dark;
+
+  box-sizing: border-box;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --light-color: #242323;
+  --light-bg: #ffffff;
+
+  --dark-bg-block: #4f674f;
+  --light-bg-block: #ece7e7;
+
+  --dark-bg: #1f261a;
+  --dark-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  padding: 1.5em;
+  color: var(--light-color);
+  background-color: var(--light-bg);
+}
+
+body.dark-theme {
+  color: var(--dark-color);
+  background-color: var(--dark-bg);
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+a:hover {
+  color: inherit;
+}
+
+header {
+  padding: 0.5em 0.7em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--dark-bg-block);
+  color: var(--dark-color);
+}
+
+.header-first {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  padding: 0;
+  margin: 0;
+}
+
+.logo a {
+  font-family: "Anton", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  padding: 0 0.5em;
+}
+
+.logo a:hover {
+  color: inherit;
+}
+
+.navbar .about {
+  position: relative;
+}
+.nested-about-links {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear, opacity 0.2s linear;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .nested-about-links li {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-top: 2px solid #ccc;
+  text-align: center;
+}
+
+.navbar .nested-about-links a:hover {
+  text-decoration: underline;
+}
+
+.arrow {
+  position: absolute;
+  top: 0.9em;
+  left: 3.5em;
+  cursor: pointer;
+  transition: transform 0.2s linear;
+  padding: 0 0.2em;
+}
+
+.arrow.show-inverse-about {
+  transform: rotate(180deg);
+}
+
+.navbar {
+  list-style: none;
+  margin: 0;
+  display: none;
+  padding-left: 0.3em;
+  padding-top: 3em;
+  display: none;
+}
+.navbar.show-nav {
+  display: block;
+}
+
+.navbar li {
+  padding: 0;
+  margin: 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.navbar li:hover {
+  background-color: var(--light-bg-block);
+}
+.dark-theme .navbar li:hover {
+  background-color: var(--dark-bg-block);
+}
+
+.navbar li a {
+  padding: 0.5em;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar li a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 991px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: static;
+    background: none;
+    padding-top: 0;
+  }
+
+  .navbar li {
+    margin: 0 2em;
+    border: none;
+  }
+
+  .navbar li a {
+    padding: 0.3em 0.7em;
+    display: inline-block;
+  }
+
+  .navbar li a.active,
+  .navbar li a:hover {
+    border-color: inherit;
+    text-decoration: none;
+  }
+
+  .navbar li:hover {
+    background: none;
+  }
+
+  .arrow {
+    top: 0.7em;
+    left: 3.3em;
+  }
+
+  .nested-about-links {
+    position: absolute;
+    width: 40vw;
+    top: calc(100% + 0.56em);
+    border-radius: 2px;
+    background-color: var(--light-bg);
+    color: var(--light-color);
+    transition: background-color 0.2s linear, color 0.2s linear, top o.2s linear;
+  }
+
+  .dark-theme .nested-about-links {
+    color: var(--dark-color);
+    background-color: var(--dark-bg-block);
+  }
+
+  .navbar .nested-about-links li {
+    border: none;
+    text-align: left;
+  }
+
+  .nested-about-links li a {
+    padding: 0.6em 0.3em;
+  }
+
+  .nested-about-links a.active {
+    background: none;
+    text-decoration: none;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+.header-end {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login a {
+  padding: 0 0.5em;
+  border-radius: 1rem;
+}
+
+.login a:hover {
+  text-decoration: underline;
+}
+.search-lens:hover {
+  color: var(--light-bg-block);
+}
+.modal-close {
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
+  padding: 0.6em;
+  cursor: pointer;
+  font-size: 2em;
+  height: 1em;
+  width: 1em;
+  text-indent: 10em;
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+}
+.modal-close::after {
+  position: inherit;
+  line-height: 0.5;
+  top: 0.35em;
+  left: 0.3em;
+  text-indent: 0;
+  content: "\00D7";
+  width: 20px;
+  height: 20px;
+  font-weight: 500;
+}
+
+.hero-section {
+  height: 70vh;
+  background-image: url("/Gemini_Generated_farmSunset.jfif"); /* Background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 -1.5em;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}
+.button {
+  display: inline-block;
+  padding: 0.4em 1em;
+  border: 2px solid var(--dark-bg-block);
+  border-radius: 0.2em;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: var(--dark-bg-block);
+  color: var(--dark-color);
+}
+.button-cta {
+  padding: 0.6em 1em;
+  background-color: var(--dark-bg-block);
+  color: var(--dark-color);
+  border: none;
+  text-decoration: none;
+}
+.button-cta:hover {
+  background-color: var(--dark-bg);
+}
+
+.dark-theme .tile .button {
+  text-decoration: underline;
+  color: var(--dark-color);
+}
+
+.dark-theme .tile .button:hover {
+  background-color: var(--dark-color);
+  color: var(--dark-bg);
+  text-decoration: none;
+}
+
+.hero-section + h1 {
+  text-align: center;
+  margin: 1.3em 0 1em;
+}
+
+.container {
+  margin: 0 auto;
+}
+.tile-row {
+  display: flex;
+  justify-content: space-around;
+}
+.tile-row > * {
+  flex: 1;
+}
+
+.tile-row > * + * {
+  margin-left: 1.5625em;
+}
+
+.tile {
+  background-color: var(--light-bg-block);
+  border-radius: 0.3em;
+  padding-top: 0;
+  padding: 0.5em;
+}
+
+.dark-theme .tile {
+  background-color: var(--dark-bg-block);
+}
+
+.tile > h4 {
+  margin-bottom: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .tile-row {
+    flex-direction: column;
+  }
+  .tile-row > * + * {
+    margin-left: 0;
+    margin-top: 1.5em;
+  }
+}
