@@ -26,6 +26,7 @@ const ModalComponent = ({
   contentLabel,
   children,
   isDarkTheme,
+  additionalStyles = {},
 }) => {
   const dynamicStyles = {
     ...customStyles,
@@ -33,6 +34,7 @@ const ModalComponent = ({
       ...customStyles.content,
       backgroundColor: isDarkTheme ? "var(--dark-bg)" : "var(--light-bg)",
       color: isDarkTheme ? "var(--dark-color)" : "var(--light-color)",
+      ...additionalStyles.content,
     },
   };
   return (

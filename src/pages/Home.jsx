@@ -7,13 +7,13 @@ const Home = () => {
         <div className="hero-content">
           <h1>Welcome to GreenField Farms!</h1>
           <p>Growing the Future, One Seed at a Time.</p>
-          <Link to="/about/products" className="button button-cta">
+          <Link to="/about/products-and-services" className="button button-cta">
             Explore our products
           </Link>
         </div>
       </section>
 
-      <h1>Our priority</h1>
+      <h1>Our Priorities</h1>
       <div className="container">
         <div className="tile-row">
           <div className="tile">

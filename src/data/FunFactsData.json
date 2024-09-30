@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Farming Dates Back",
+    "description": "Agriculture began around 12,000 years ago."
+  },
+  {
+    "id": 2,
+    "title": "Most Widely Grown Crop",
+    "description": "Maize is the most widely grown crop in terms of production volume."
+  },
+  {
+    "id": 3,
+    "title": "Rice is Key",
+    "description": "Rice is the main food for more than half of the world's population."
+  },
+  {
+    "id": 4,
+    "title": "Wheat Varieties",
+    "description": "There are around 30,000 varieties of wheat."
+  },
+  {
+    "id": 5,
+    "title": "Honey Never Spoils",
+    "description": "Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible."
+  },
+  {
+    "id": 6,
+    "title": "Sheep Recognize Faces",
+    "description": "Sheep can recognize human faces, even after years of separation."
+  },
+  {
+    "id": 7,
+    "title": "Peanuts are Not Nuts",
+    "description": "Peanuts are legumes, part of the same family as beans and lentils."
+  },
+  {
+    "id": 8,
+    "title": "A Cow's Dairy Production",
+    "description": "A single cow can produce 200,000 glasses of milk in its lifetime."
+  },
+  {
+    "id": 9,
+    "title": "Apples Float",
+    "description": "Apples are made up of 25% air, which is why they can float in water."
+  },
+  {
+    "id": 10,
+    "title": "Chickens and Dinosaurs",
+    "description": "Chickens are the closest living relatives to the Tyrannosaurus Rex."
+  }
+]

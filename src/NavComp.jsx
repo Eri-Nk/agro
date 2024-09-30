@@ -10,26 +10,20 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
     <nav>
       <ul className={`navbar ${isMenuOpen ? "show-nav" : ""}`}>
         <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={closeModal}
-          >
+          <NavLink to="/" onClick={closeModal}>
             Home
           </NavLink>
         </li>
-        <li className="about">
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={closeModal}
-          >
-            About
-          </NavLink>
+        <li
+          className="about"
+          onMouseEnter={() => setisAboutOpen(true)}
+          onMouseLeave={() => setisAboutOpen(false)}
+        >
+          <span>About</span>
           <IoMdArrowDropdown
             className={`arrow ${isAboutOpen ? "show-inverse-about" : ""}`}
-            onClick={() => setisAboutOpen((prevState) => !prevState)}
           />
+
           <ul
             className="nested-about-links"
             ref={nestedAboutLinksRef}
@@ -46,46 +40,29 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={closeModal} to="/about/products">
+              <NavLink onClick={closeModal} to="/about/products-and-services">
                 Products & Services
               </NavLink>
             </li>
             <li>
-              <NavLink onClick={closeModal} to="/about/location">
-                Location
-              </NavLink>
-            </li>
-            <li>
-              <NavLink onClick={closeModal} to="/about/contact">
-                Contact
+              <NavLink onClick={closeModal} to="/about/agro-insights">
+                AgroInsights
               </NavLink>
             </li>
           </ul>
         </li>
         <li>
-          <NavLink
-            to="/events"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={closeModal}
-          >
+          <NavLink to="/events" onClick={closeModal}>
             Events
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/gallery"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={closeModal}
-          >
-            Gallery
+          <NavLink to="/fun-facts" onClick={closeModal}>
+            Fun Facts
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/blogs"
-            className={({ isActive }) => (isActive ? "active" : "")}
-            onClick={closeModal}
-          >
+          <NavLink to="/blogs" onClick={closeModal}>
             Blog
           </NavLink>
         </li>

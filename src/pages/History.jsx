@@ -1,17 +1,39 @@
+import Breadcrumbs from "../Breadcrumbs";
+import data from "../data/ChartData.js";
+import LineChart from "../LineChart.jsx";
+import { Link } from "react-router-dom";
+
 const History = () => {
   return (
-    <section>
-      <h2>Our History</h2>
+    <div className="history">
+      <Breadcrumbs />
+      <h1>Our Agricultural Evolution</h1>
+
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-        odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-        quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-        mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-        Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Curabitur
-        sodales ligula in libero.
+        Our agricultural journey began in 2020, during a time of significant
+        challenges. We developed an innovative food processing method that
+        integrates both subsistence and commercial farming. This approach has
+        enabled us to produce a stable and ample supply of food year after year.
       </p>
-    </section>
+
+      <section className="year-progress">
+        <h2>Annual Production Overview</h2>
+        <p>
+          The graph below highlights our annual food production trends over the
+          years.
+        </p>
+        <div className="chart-container" style={{ paddingBottom: "2em" }}>
+          <LineChart data={data} />
+        </div>
+      </section>
+
+      <section className="call-to-action">
+        <h2>Discover Our Products and Services</h2>
+        <Link to="/about/products-and-services" className="button button-cta">
+          Explore Now
+        </Link>
+      </section>
+    </div>
   );
 };
 

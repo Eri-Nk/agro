@@ -1,37 +1,37 @@
-import { useState } from "react";
 import Header from "./Header";
+import Footer from "./Footer";
 
 import {
   Home,
-  About,
   Events,
   Products,
-  Contact,
-  Location,
+  AgroInsights,
   History,
-  Gallery,
+  FunFacts,
   Blog,
+  NotFound,
 } from "./pages";
 import { Route, Routes, Navigate } from "react-router-dom";
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />}>
-          <Route path="location" element={<Location />} />
-          <Route path="history" element={<History />} />
-          <Route path="products" element={<Products />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-        <Route path="/events" element={<Events />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/blogs" element={<Blog />} />
-        <Route path="/home" element={<Navigate to="/" />} />
-      </Routes>
-    </>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about/agro-insights" element={<AgroInsights />} />
+          <Route path="/about/history" element={<History />} />
+          <Route path="/about/products-and-services" element={<Products />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/fun-facts" element={<FunFacts />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/home" element={<Navigate to="/" />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
 

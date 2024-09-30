@@ -6,12 +6,12 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoIosSunny } from "react-icons/io";
 import ModalComponent from "./ModalComponenet";
 import NavComp from "./NavComp";
-// import { useTheme } from "./StateTheme.jsx";
+import { useTheme } from "./ColorTheme";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 992);
-  const [isDarkTheme, setisDarkTheme] = useState(false);
+  const { isDarkTheme, setisDarkTheme } = useTheme();
   const refInput = useRef(null);
 
   const handleResize = () => {
@@ -69,7 +69,9 @@ const Header = () => {
           }}
         />
         <div className="logo">
-          <Link to="/home">Eriko's Agro</Link>
+          <Link to="/home" onClick={closeModal}>
+            Eriko's Agro
+          </Link>
         </div>
       </div>
       {isLargeScreen ? (
