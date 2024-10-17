@@ -1,10 +1,6 @@
-import Header from "./Header";
-import Footer from "./Footer";
-
 const ErrorScreen = ({ error, resetErrorBoundary }) => {
   return (
     <div className="app-container">
-      <Header />
       <div className="error main-content">
         <h3>We are sorry, something went wrong</h3>
         <p>
@@ -16,7 +12,6 @@ const ErrorScreen = ({ error, resetErrorBoundary }) => {
           Try Again
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -73,10 +73,6 @@ a {
   margin: 0;
 }
 
-a:hover {
-  color: inherit;
-}
-
 header {
   padding: 0.5em 0.7em;
   display: flex;
@@ -281,10 +277,11 @@ header {
 .login a {
   padding: 0 0.5em;
   border-radius: 1rem;
+  transition: color 0.3s ease;
 }
 
 .login a:hover {
-  text-decoration: underline;
+  color: #ccc;
 }
 .search-lens:hover {
   color: var(--light-bg-block);
@@ -950,6 +947,35 @@ header {
   margin: 5px 0;
 }
 
+.message-box {
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1rem;
+}
+
+.message-success {
+  background-color: #e6ffe6;
+  color: #2f8a2d;
+}
+.dark-theme .message-success,
+.dark-theme .message-error {
+  background-color: var(--dark-bg-block);
+}
+
+.message-error {
+  background-color: #ffe6e6;
+  color: #d9534f;
+}
+
+.message-box .icon {
+  font-size: 1.5em;
+}
+
 /* fun-facts */
 .fun-facts ul {
   list-style: none;
@@ -1046,11 +1072,14 @@ header {
 }
 
 .blog-data h4,
-.blog-data h5 {
+.blog-data h5,
+.user-blog h4,
+.user-blog h5 {
   font-size: 0.8rem;
   margin: 5px 0;
 }
-.blog-data h5 {
+.blog-data h5,
+.user-blog h5 {
   color: #999;
 }
 
@@ -1065,4 +1094,202 @@ header {
 .blog-content span {
   margin-top: -10px;
   display: block;
+}
+
+.add-blog {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* login page,forms */
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5em auto;
+  width: 60%;
+  justify-content: center;
+  padding: 0 1em;
+}
+form label {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+@media (max-width: 600px) {
+  form {
+    width: 90%;
+  }
+}
+.dark-theme form input,
+.dark-theme form textarea {
+  background-color: #598251;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid #4a6b43;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-theme form input:focus,
+.dark-theme form textarea:focus {
+  background-color: #6b9a63;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+form input,
+form textarea {
+  display: block;
+  height: 40px;
+  margin-bottom: 1em;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+form #title {
+  height: 60px;
+  font-family: inherit;
+}
+
+form #blog-content {
+  height: 300px;
+  font-family: inherit;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  background-color: #ece7e791;
+}
+
+form a:hover {
+  text-decoration: underline;
+}
+
+form button {
+  width: 100%;
+  height: 40px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1.5em;
+}
+
+form .no-account a,
+form .have-account a {
+  padding-left: 0.4em;
+  font-weight: bold;
+}
+
+form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--cta-primary);
+}
+
+.forgot-password {
+  padding-left: 0;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.remember-me label {
+  font-size: 0.8rem;
+  margin-top: -0.5em;
+}
+.spinner {
+  border: 3px solid;
+  border-color: var(--dark-color) var(--dark-color) transparent transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  margin-top: -5px;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.password-container {
+  position: relative;
+}
+.password-eye {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+/* user info */
+.user-info {
+  width: 100%;
+}
+
+.user-info p:nth-child(1) {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.user-info p:nth-child(2) {
+  font-size: 1rem;
+  margin-bottom: 1em;
+}
+
+.user-info p:last-of-type {
+  font-size: 0.9rem;
+  margin-bottom: 2em;
+}
+
+/* user blog.....some styles present in blog */
+.user-blog .title {
+  width: 50%;
+  height: 20px;
+  margin: auto;
+}
+
+.user-blog .body {
+  height: 100px;
+  width: 100%;
+}
+
+.user-blog .author,
+.user-blog .date {
+  width: 20%;
+  height: 20px;
+}
+
+.user-blog .blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-blog .blog-header h2 {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.user-blog .blog-header button {
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  padding-top: 25px;
+}
+
+.user-blog .blog-header button:hover {
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 }

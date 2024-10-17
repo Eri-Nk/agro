@@ -11,10 +11,12 @@ const customStyles = {
     margin: "0",
     border: "none",
     padding: "2em",
+    zIndex: "200",
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     backdropFilter: "blur(5px)",
+    zIndex: "199",
   },
 };
 
@@ -35,6 +37,10 @@ const ModalComponent = ({
       backgroundColor: isDarkTheme ? "var(--dark-bg)" : "var(--light-bg)",
       color: isDarkTheme ? "var(--dark-color)" : "var(--light-color)",
       ...additionalStyles.content,
+    },
+    overlay: {
+      ...customStyles.overlay,
+      ...additionalStyles.overlay,
     },
   };
   return (

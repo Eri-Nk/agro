@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const AgroInsights = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const iframeRef = useRef(null);
 
   useEffect(() => {
     const keyID = import.meta.env.VITE_WEATHER_KEY;
@@ -85,7 +84,6 @@ const AgroInsights = () => {
             loading="lazy"
             title="Google Map"
             referrerPolicy="no-referrer-when-downgrade"
-            ref={iframeRef}
           ></iframe>
         </section>
       </div>

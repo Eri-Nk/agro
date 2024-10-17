@@ -1,8 +1,12 @@
 import BlogData from "../data/BlogData";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useUser } from "../UserProvider.jsx";
+import FetchedBlog from "./FetchedBlog.jsx";
 
 const Blog = () => {
   const [displayContent, setDisplayContent] = useState({});
+  const { user } = useUser();
 
   const displayBlogContent = (id) => {
     setDisplayContent((prevContent) => ({
@@ -18,52 +22,78 @@ const Blog = () => {
           <li key={data.id}>
             <h2>{data.title}</h2>
 
-            <p
-              className="blog-excerpt"
-              style={{ display: displayContent[data.id] ? "none" : "block" }}
-            >
-              {data.excerpt}
-
-              {data.source ? (
-                <a
-                  href={data.source}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="button"
-                >
-                  Read more
-                </a>
-              ) : (
-                <span
-                  onClick={() => displayBlogContent(data.id)}
-                  className="button"
-                >
-                  Read more
-                </span>
+            <div className="blog-excerpt">
+              {data.excerpt && (
+                <p>
+                  {data.excerpt}
+                  <span>
+                    <a
+                      href={data.source}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button"
+                    >
+                      ...read more
+                    </a>
+                  </span>
+                </p>
               )}
-            </p>
+            </div>
+
             {data.content && (
-              <div
-                className="blog-content"
-                style={{ display: displayContent[data.id] ? "block" : "none" }}
-              >
-                {data.content.split("\n").map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+              <>
+                <div>
+                  {data.content.split("\n").slice(0, 2).join(" ")}
+                  <span
+                    className="button"
+                    onClick={() => displayBlogContent(data.id)}
+                    style={{
+                      display: displayContent[data.id] ? "none" : "block",
+                    }}
+                  >
+                    ...read more
+                  </span>
+                </div>
                 <span
-                  onClick={() => displayBlogContent(data.id)}
-                  className="button"
+                  className="blog-content"
+                  style={{
+                    display: displayContent[data.id] ? "block" : "none",
+                  }}
                 >
-                  See less
+                  {data.content
+                    .split("\n")
+                    .slice(2)
+                    .map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  <span
+                    onClick={() => displayBlogContent(data.id)}
+                    className="button"
+                  >
+                    ...See less
+                  </span>
                 </span>
-              </div>
+              </>
             )}
             <h3>{data.author}</h3>
             <h5>{data.date}</h5>
           </li>
         ))}
       </ul>
-      <div className="button button-cta">Add a Blog</div>
+
+      <FetchedBlog
+        displayContent={displayContent}
+        displayBlogContent={displayBlogContent}
+      />
+
+      <div className="add-blog">
+        <Link
+          to={user ? "/blogs/create-blog" : "/signup"}
+          className="button button-cta"
+        >
+          Add a Blog
+        </Link>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const Blogs = [
     author: "USDA",
     date: "Sept 20, 2024",
     excerpt:
-      "Known as the 'Farmer's Lawyer,' Sarah Vogel has dedicated her career to advocating for rural and Tribal communities.She continues to be a vocal advocate for both young and new farmers and women. The Black, Indigenous, and people of color (BIPOC) communities havent been left out...",
+      "Known as the 'Farmer's Lawyer,' Sarah Vogel has dedicated her career to advocating for rural and Tribal communities.She continues to be a vocal advocate for both young and new farmers and women. The Black, Indigenous, and people of color (BIPOC) communities havent been left out",
     source:
       "https://www.usda.gov/media/blog/2024/09/20/sarah-vogel-midwestern-attorney-supporting-family-women-and-native-american#write-blog-response", // Link to the full article
     content: null,
@@ -15,8 +15,7 @@ const Blogs = [
     title: "The Future of Vertical Farming: Revolutionizing Urban Agriculture",
     author: "Agro Blog Team",
     date: "Sept 22, 2024",
-    excerpt:
-      "Vertical farming is changing how we grow food in urban spaces, allowing year-round production in small areas...",
+    excerpt: null,
     content: ` Vertical farming, a method of cultivating plants in stacked layers, is revolutionizing urban agriculture. This innovative approach addresses challenges like limited land availability and resource scarcity in densely populated cities. Vertical farms utilize hydroponic systems, which involve growing plants without soil using nutrient-rich water solutions. These systems can be implemented in various structures, from repurposed warehouses to specially designed vertical farms.
 
     By controlling environmental factors such as temperature, humidity, and light intensity, vertical farming enables year-round production of a diverse range of crops. This eliminates the constraints of traditional outdoor agriculture, where growing seasons are limited and weather conditions can impact yields. Additionally, vertical farming reduces water consumption significantly as hydroponic systems recycle water efficiently.
@@ -32,8 +31,7 @@ const Blogs = [
     title: "How AI is Enhancing Crop Management Systems",
     author: "Agro Blog Team",
     date: "Sept 19, 2024",
-    excerpt:
-      "AI-driven solutions are helping farmers monitor soil health, optimize water usage, and predict crop yields...",
+    excerpt: null,
     content: `Artificial intelligence (AI) is transforming the agricultural landscape by providing farmers with valuable tools to optimize their practices and enhance crop yields. AI-driven solutions are enabling farmers to monitor soil health, optimize water usage, and predict crop yields with unprecedented precision.
 
     Soil health is a crucial factor in crop productivity. AI-powered sensors can analyze soil composition, moisture levels, and nutrient content, providing farmers with real-time data to make informed decisions about fertilizer applications and irrigation. By understanding their soil's specific needs, farmers can optimize fertilizer use, reducing costs and minimizing environmental impact.
@@ -52,8 +50,7 @@ const Blogs = [
     title: "Sustainable Practices in Livestock Farming",
     author: "Agro Blog Team",
     date: "Sept 10, 2024",
-    excerpt:
-      "Sustainable livestock farming focuses on animal welfare, reducing environmental impact, and efficient resource use...",
+    excerpt: null,
     content: `
     Sustainable livestock farming is a growing movement that seeks to balance economic viability with environmental responsibility and ethical considerations. By prioritizing animal welfare, reducing greenhouse gas emissions, and optimizing resource use, farmers are making significant strides towards a more sustainable future for the livestock industry.
 
