@@ -1,11 +1,11 @@
 import eventsData from "../data/EventsData.json";
 import ModalComponent from "../ModalComponenet";
 import { useEffect, useState } from "react";
-import { useTheme } from "../ColorTheme";
+import { useTheme } from "../contexts/ThemeProvider";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebaseConfig";
 import { arrayUnion, updateDoc, arrayRemove, doc } from "firebase/firestore";
-import { useUser } from "../UserProvider";
+import { useUser } from "../contexts/UserProvider";
 import { BsCheckCircle, BsExclamationCircle } from "react-icons/bs";
 
 const Events = () => {
@@ -73,7 +73,7 @@ const Events = () => {
         }));
       }
     } else {
-      navigate("/login");
+      navigate("/user/login");
     }
   };
 

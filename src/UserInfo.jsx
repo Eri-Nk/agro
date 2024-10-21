@@ -1,8 +1,8 @@
 import ModalComponent from "./ModalComponenet";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebaseConfig.js";
-import { useUser } from "./UserProvider.jsx";
-import { useTheme } from "./ColorTheme.jsx";
+import { useUser } from "./contexts/UserProvider.jsx";
+import { useTheme } from "./contexts/ThemeProvider.jsx";
 import { BsEmojiSunglasses } from "react-icons/bs";
 import { useState, useEffect } from "react";
 

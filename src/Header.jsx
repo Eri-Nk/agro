@@ -1,22 +1,23 @@
 import { NavLink, Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { FaMoon } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoIosSunny } from "react-icons/io";
 import ModalComponent from "./ModalComponenet";
 import NavComp from "./NavComp";
-import { useTheme } from "./ColorTheme";
-import { useUser } from "./UserProvider";
+import { useTheme } from "./contexts/ThemeProvider";
+import { useUser } from "./contexts/UserProvider";
 import UserInfo from "./UserInfo";
+import Search from "./Search";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 992);
   const { isDarkTheme, setisDarkTheme } = useTheme();
   const [userInfoVisible, setUserInfoVisible] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { user } = useUser();
-  
 
   const handleResize = () => {
     setIsLargeScreen(window.innerWidth >= 992);
@@ -37,8 +38,6 @@ const Header = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
   };
 
-
-
   const toggleDarkTheme = () => {
     setisDarkTheme((prevTheme) => {
       const newTheme = !prevTheme;
@@ -56,7 +55,11 @@ const Header = () => {
   };
 
   const toggleUserInfo = () => {
-    setUserInfoVisible((prev) => !prev);
+    setUserInfoVisible((prevInfo) => !prevInfo);
+  };
+
+  const toggleSearchModal = () => {
+    setIsSearchModalOpen((prevModal) => !prevModal);
   };
 
   return (
@@ -107,7 +110,7 @@ const Header = () => {
               )}
             </div>
           ) : (
-            <NavLink to="/login">Sign in</NavLink>
+            <NavLink to="/user/login">Sign in</NavLink>
           )}
         </div>
         <FaMagnifyingGlass
@@ -117,8 +120,14 @@ const Header = () => {
             cursor: "pointer",
             padding: "0 0.5em",
           }}
-        
+          onClick={toggleSearchModal}
         />
+        {isSearchModalOpen && (
+          <Search
+            isSearchModalOpen={isSearchModalOpen}
+            setIsSearchModalOpen={setIsSearchModalOpen}
+          />
+        )}
         <div className="theme">
           <FaMoon
             onClick={toggleDarkTheme}

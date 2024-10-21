@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebaseConfig.js";
+import { auth } from "../../firebaseConfig.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { LuEye } from "react-icons/lu";
 import { PiEyeClosedThin } from "react-icons/pi";
-import { getErrorMessage } from "../firebaseUtil.js";
+import { getErrorMessage } from "../../firebaseUtil.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -96,11 +96,11 @@ const Login = () => {
 
       <div className="no-account">
         <p>
-          Don't have an account ? <Link to="/signup">Sign up here!</Link>
+          Don't have an account ? <Link to="/user/signup">Sign up here!</Link>
         </p>
 
         <p className="forgot-password">
-          <Link to="/forgot-password"> Forgot Password ?</Link>
+          <Link to="/user/forgot-password"> Forgot Password ?</Link>
         </p>
         {errorMessage && (
           <p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>

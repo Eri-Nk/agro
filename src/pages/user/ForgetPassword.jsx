@@ -1,7 +1,7 @@
-import { auth } from "../firebaseConfig.js";
+import { auth } from "../../firebaseConfig.js";
 import { useState } from "react";
 import { sendPasswordResetEmail } from "firebase/auth";
-import { getErrorMessage } from "../firebaseUtil.js";
+import { getErrorMessage } from "../../firebaseUtil.js";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +30,6 @@ const ForgotPassword = () => {
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"

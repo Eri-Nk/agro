@@ -1,10 +1,10 @@
-import BlogData from "../data/BlogData";
+import BlogData from "../../data/BlogData";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "../UserProvider.jsx";
+import { useUser } from "../../contexts/UserProvider.jsx";
 import FetchedBlog from "./FetchedBlog.jsx";
 
-const Blog = () => {
+const BlogComponent = () => {
   const [displayContent, setDisplayContent] = useState({});
   const { user } = useUser();
 
@@ -81,10 +81,7 @@ const Blog = () => {
         ))}
       </ul>
 
-      <FetchedBlog
-        displayContent={displayContent}
-        displayBlogContent={displayBlogContent}
-      />
+      <FetchedBlog />
 
       <div className="add-blog">
         <Link
@@ -98,4 +95,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogComponent;

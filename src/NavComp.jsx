@@ -62,7 +62,7 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blogs" onClick={closeModal}>
+          <NavLink to="/blogs/blog-component" onClick={closeModal}>
             Blog
           </NavLink>
         </li>

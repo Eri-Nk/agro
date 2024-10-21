@@ -5,17 +5,20 @@ import "./index.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorScreen from "./ErrorScreen.jsx";
-import ColorTheme from "./ColorTheme.jsx";
-import UserProvider from "./UserProvider.jsx";
+import ThemeProvider from "./contexts/ThemeProvider.jsx";
+import UserProvider from "./contexts/UserProvider.jsx";
+import SearchProvider from "./contexts/SearchProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ErrorBoundary FallbackComponent={ErrorScreen}>
     <Router>
-      <ColorTheme>
+      <ThemeProvider>
         <UserProvider>
-          <App />
+          <SearchProvider>
+            <App />
+          </SearchProvider>
         </UserProvider>
-      </ColorTheme>
+      </ThemeProvider>
     </Router>
   </ErrorBoundary>
 );

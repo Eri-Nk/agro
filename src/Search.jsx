@@ -1,38 +1,57 @@
-import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import React, { useRef, useState } from "react";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import ModalComponent from "./ModalComponenet";
+import { useTheme } from "./contexts/ThemeProvider";
 
-const Search = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
+  const { isDarkTheme } = useTheme();
+  const [text, setText] = useState("");
+  const inputRef = useRef(null);
 
-  const handleSearchIconClick = () => {
-    setIsModalOpen(true); // Open the search modal
+  const closeSearchModal = () => {
+    setIsSearchModalOpen(false);
   };
 
-  const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
-    // Logic to fetch search results based on input
+  const handleInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const searchModalStyle = {
+    content: {
+      top: "20px",
+      left: "10%",
+      right: "10%",
+      bottom: "20px",
+      border: "none",
+      borderRadius: "20px",
+      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+    },
   };
 
   return (
-    <div className="search-container">
-      <FaSearch onClick={handleSearchIconClick} />
+    <ModalComponent
+      isOpen={isSearchModalOpen}
+      onClose={closeSearchModal}
+      isDarkTheme={isDarkTheme}
+      contentLabel="search modal"
+      additionalStyles={searchModalStyle}
+    >
+      <div className="search-container">
+        <div className="text-container">
+          <FaMagnifyingGlass onClick={handleInput} />
 
-      {isModalOpen && (
-        <div className="search-modal">
           <input
             type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={handleInputChange}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="search"
+            ref={inputRef}
           />
-          {/* Display search results here */}
-          <div className="search-results">
-            {/* Render list of search results based on `searchQuery` */}
-          </div>
         </div>
-      )}
-    </div>
+      </div>
+    </ModalComponent>
   );
 };
 

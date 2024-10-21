@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, db } from "../firebaseConfig.js";
+import { auth, db } from "../../firebaseConfig.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { LuEye } from "react-icons/lu";
 import { PiEyeClosedThin } from "react-icons/pi";
-import { getErrorMessage } from "../firebaseUtil.js";
+import { getErrorMessage } from "../../firebaseUtil.js";
 
 const signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -146,7 +146,7 @@ const signup = () => {
 
       <div className="have-account">
         <p>
-          Already have an account? <Link to="/login">Sign In</Link>
+          Already have an account? <Link to="/user/login">Sign In</Link>
         </p>
         {errorMessage && (
           <p style={{ color: "red", fontWeight: "bold" }}>{errorMessage}</p>

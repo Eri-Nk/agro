@@ -1,4 +1,4 @@
-import { db } from "../firebaseConfig";
+import { db } from "../../firebaseConfig.js";
 import {
   collection,
   onSnapshot,
@@ -8,10 +8,10 @@ import {
   query,
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { useUser } from "../UserProvider";
+import { useUser } from "../../contexts/UserProvider.jsx";
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const FetchedBlog = ({ displayContent, displayBlogContent }) => {
+const FetchedBlog = () => {
   const colRef = collection(db, "blogs");
   const [fetchedBlogs, setFetchedBlogs] = useState([]);
   const { user } = useUser();
