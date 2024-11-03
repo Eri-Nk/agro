@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -7,16 +6,16 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorScreen from "./ErrorScreen.jsx";
 import ThemeProvider from "./contexts/ThemeProvider.jsx";
 import UserProvider from "./contexts/UserProvider.jsx";
-import SearchProvider from "./contexts/SearchProvider.jsx";
+import { HelmetProvider } from "react-helmet-async";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ErrorBoundary FallbackComponent={ErrorScreen}>
     <Router>
       <ThemeProvider>
         <UserProvider>
-          <SearchProvider>
+          <HelmetProvider>
             <App />
-          </SearchProvider>
+          </HelmetProvider>
         </UserProvider>
       </ThemeProvider>
     </Router>

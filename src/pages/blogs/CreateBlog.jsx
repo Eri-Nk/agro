@@ -2,6 +2,7 @@ import { useState } from "react";
 import { db } from "../../firebaseConfig";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const CreateBlog = () => {
   const [title, setTitle] = useState("");
@@ -30,6 +31,7 @@ const CreateBlog = () => {
       lastName: capitalizeFirstLetter(lastName),
       content: blogContent,
       createdAt: serverTimestamp(),
+      authorId: user.uid,
     };
     try {
       await addDoc(collection(db, "blogs"), BlogData);
@@ -40,57 +42,61 @@ const CreateBlog = () => {
       setBlogContent("");
     } catch (error) {
       setErrorMessage("An error occured, couldn't create blog");
-      console.log(error.message);
     } finally {
       setIsLoading(false);
     }
   };
   return (
-    <form onSubmit={handleBlogSubmit}>
-      <div>
-        <label htmlFor="title">Title</label>
-        <textarea
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </div>
+    <>
+      <Helmet>
+        <title>Create Blog | Eriko Agro</title>
+      </Helmet>
+      <form onSubmit={handleBlogSubmit}>
+        <div>
+          <label htmlFor="title">Title</label>
+          <textarea
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-      </div>
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          type="text"
-          required
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
+        <div>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            required
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
 
-      <div>
-        <label htmlFor="blog-content">Blog Content</label>
-        <textarea
-          id="blog-content"
-          value={blogContent}
-          required
-          onChange={(e) => setBlogContent(e.target.value)}
-        />
-      </div>
-      <button type="submit" className="button-cta">
-        {isLoading ? <span className="spinner"></span> : "submit"}
-      </button>
-      {errorMessage && <p>{errorMessage}</p>}
-    </form>
+        <div>
+          <label htmlFor="blog-content">Blog Content</label>
+          <textarea
+            id="blog-content"
+            value={blogContent}
+            required
+            onChange={(e) => setBlogContent(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="button-cta">
+          {isLoading ? <span className="spinner"></span> : "submit"}
+        </button>
+        {errorMessage && <p>{errorMessage}</p>}
+      </form>
+    </>
   );
 };
 

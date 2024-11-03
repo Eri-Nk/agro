@@ -57,16 +57,17 @@ const UserInfo = ({ userInfoVisible, setUserInfoVisible }) => {
     >
       <div className="user-info">
         <p>
-          Hello,{user.firstName} {user.lastName}{" "}
-          <BsEmojiSunglasses style={{ paddingLeft: "10px" }} />
+          Hello, {user.firstName} {user.lastName}
         </p>
-        <p>{timeMsg}</p>
+        <p>
+          {timeMsg} <BsEmojiSunglasses style={{ paddingLeft: "10px" }} />
+        </p>
         <p>{user.email}</p>
 
         {/* Display events if available */}
         {user.events && user.events.length > 0 && (
           <div>
-            <h3>RSVP'd Events:</h3>
+            <h3>RSVP&apos;d Events:</h3>
             <ul>
               {user.events.map((event, index) => (
                 <li key={index}>

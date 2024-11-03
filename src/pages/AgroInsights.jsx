@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AgroInsights = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -15,15 +16,25 @@ const AgroInsights = () => {
         setWeatherData(data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.log("Error is", err);
+      .catch(() => {
+        setLoading(false);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, []);
 
   return (
     <div className="agro-insights">
-      <h1>Visit Us at Our Farm Location</h1>
+      <Helmet>
+        <title>Agro Insights | Eriko Agro</title>
+        <meta
+          name="description"
+          content="Stay updated with the latest insights and trends in sustainable agriculture from Eriko Agro."
+        />
+      </Helmet>
+
+      <h1 id="location">Visit Us at Our Farm Location</h1>
       <p>
         Explore our lush agricultural fields in Port Harcourt, where innovation
         meets nature.
@@ -46,7 +57,9 @@ const AgroInsights = () => {
               sustainability.
             </p>
 
-            <h2 id="weather-section">Today's Weather in {weatherData.name}</h2>
+            <h2 id="weather-section">
+              Today&apos;s Weather in {weatherData.name}
+            </h2>
             <p>
               <strong>Weather Condition:</strong> {weatherData.weather[0].main}{" "}
               ({weatherData.weather[0].description})
@@ -63,7 +76,7 @@ const AgroInsights = () => {
               <strong>Wind Speed:</strong> {weatherData.wind.speed} m/s — a
               gentle breeze to carry the scent of our blooming crops.
             </p>
-            <p>Whether rain or shine, we're always cultivating growth here!</p>
+            <p>Whether rain or shine, we are always cultivating growth here!</p>
           </section>
         )}
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserProvider.jsx";
 import FetchedBlog from "./FetchedBlog.jsx";
+import { Helmet } from "react-helmet-async";
 
 const BlogComponent = () => {
   const [displayContent, setDisplayContent] = useState({});
@@ -16,7 +17,15 @@ const BlogComponent = () => {
   };
   return (
     <div className="blog-data">
-      <h1>Blog</h1>
+      <Helmet>
+        <title>Blog | Eriko Agro</title>
+        <meta
+          name="description"
+          content="Read the latest articles and updates in sustainable agriculture on Eriko Agro's blog."
+        />
+      </Helmet>
+
+      <h1 id="blog">Blog</h1>
       <ul>
         {BlogData.map((data) => (
           <li key={data.id}>
@@ -48,7 +57,9 @@ const BlogComponent = () => {
                     className="button"
                     onClick={() => displayBlogContent(data.id)}
                     style={{
-                      display: displayContent[data.id] ? "none" : "block",
+                      display: displayContent[data.id]
+                        ? "none"
+                        : "inline-block",
                     }}
                   >
                     ...read more
@@ -57,7 +68,7 @@ const BlogComponent = () => {
                 <span
                   className="blog-content"
                   style={{
-                    display: displayContent[data.id] ? "block" : "none",
+                    display: displayContent[data.id] ? "inline-block" : "none",
                   }}
                 >
                   {data.content
@@ -69,6 +80,7 @@ const BlogComponent = () => {
                   <span
                     onClick={() => displayBlogContent(data.id)}
                     className="button"
+                    style={{ display: "inline-block" }}
                   >
                     ...See less
                   </span>
@@ -85,7 +97,7 @@ const BlogComponent = () => {
 
       <div className="add-blog">
         <Link
-          to={user ? "/blogs/create-blog" : "/signup"}
+          to={user ? "/blogs/create-blog" : "/user/signup"}
           className="button button-cta"
         >
           Add a Blog

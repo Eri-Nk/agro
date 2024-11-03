@@ -1,24 +1,33 @@
-import React from "react";
-import { useSearch } from "../contexts/SearchContext";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+import HighlightText from "./HighlightText";
 
-const SearchComponent = () => {
-  const { searchResults } = useSearch();
-
+const SearchComponent = ({ searchResults, searchTerm, closeSearchModal }) => {
   return (
     <div className="search-results">
-      <h2>Search Results</h2>
-      {searchResults.length > 0 ? (
-        <ul>
-          {searchResults.map((result) => (
-            <li key={result.id}>
-              <Link to={`#blog-${result.id}`}>{result.title}</Link>
-              <p>{result.author}</p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No results found</p>
+      {searchTerm && (
+        <>
+          <h2>Search Results</h2>
+          {searchResults.length > 0 ? (
+            <ul>
+              {searchResults.map((result, index) => (
+                <li key={index}>
+                  <HashLink
+                    smooth
+                    to={`${result.link}#${result.id}`}
+                    onClick={closeSearchModal}
+                  >
+                    <HighlightText
+                      text={result.keyword}
+                      searchTerm={searchTerm}
+                    />
+                  </HashLink>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No results found</p>
+          )}
+        </>
       )}
     </div>
   );

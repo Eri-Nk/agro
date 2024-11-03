@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FunFactsData from "../data/FunFactsData.json";
 import { GiPalmTree } from "react-icons/gi";
+import { Helmet } from "react-helmet-async";
 
 const FunFacts = () => {
   // page to view per screen
@@ -37,7 +38,15 @@ const FunFacts = () => {
 
   return (
     <div className="fun-facts">
-      <h2>Fun Facts About Agriculture</h2>
+      <Helmet>
+        <title>Fun Facts | Eriko Agro</title>
+        <meta
+          name="description"
+          content="Explore interesting facts about agriculture, food, and sustainability with Eriko Agro."
+        />
+      </Helmet>
+
+      <h2 id="fun-facts">Fun Facts About Agriculture</h2>
       <p className="do-you-know">
         Do you know ?
         <span

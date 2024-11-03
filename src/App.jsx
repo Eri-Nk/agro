@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet-async";
 
 import {
   Home,
@@ -20,6 +21,9 @@ import { Route, Routes, Navigate } from "react-router-dom";
 function App() {
   return (
     <div className="app-container">
+      <Helmet>
+        <title>Eriko Agro</title>
+      </Helmet>
       <Header />
       <main className="main-content">
         <Routes>

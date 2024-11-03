@@ -1,12 +1,17 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import ModalComponent from "./ModalComponenet";
 import { useTheme } from "./contexts/ThemeProvider";
+import debounce from "lodash.debounce";
+import SearchComponent from "./pages/SearchComponent.jsx";
+import KeywordData from "./data/KeywordData.js";
 
 const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
   const { isDarkTheme } = useTheme();
-  const [text, setText] = useState("");
   const inputRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+  const debouncedFunctionRef = useRef(null);
 
   const closeSearchModal = () => {
     setIsSearchModalOpen(false);
@@ -16,6 +21,35 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+  };
+
+  useEffect(() => {
+    debouncedFunctionRef.current = debounce((term) => {
+      if (term) {
+        const results = [];
+
+        Object.keys(KeywordData).forEach((component) => {
+          KeywordData[component].forEach((entry) => {
+            if (entry.keyword.toLowerCase().includes(term.toLowerCase())) {
+              results.push({
+                keyword: entry.keyword,
+                id: entry.id,
+                link: entry.link,
+              });
+            }
+          });
+        });
+        setFilteredResults(results);
+      } else {
+        setFilteredResults([]);
+      }
+    }, 500);
+  }, []);
+
+  const handleInputChange = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+    debouncedFunctionRef.current(term);
   };
 
   const searchModalStyle = {
@@ -44,12 +78,19 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
 
           <input
             type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="search"
+            value={searchTerm}
+            onChange={handleInputChange}
+            placeholder="search for keywords"
             ref={inputRef}
+            spellCheck="false"
           />
         </div>
+
+        <SearchComponent
+          searchResults={filteredResults}
+          searchTerm={searchTerm}
+          closeSearchModal={closeSearchModal}
+        />
       </div>
     </ModalComponent>
   );

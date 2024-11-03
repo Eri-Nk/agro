@@ -7,6 +7,7 @@ import { db } from "../firebaseConfig";
 import { arrayUnion, updateDoc, arrayRemove, doc } from "firebase/firestore";
 import { useUser } from "../contexts/UserProvider";
 import { BsCheckCircle, BsExclamationCircle } from "react-icons/bs";
+import { Helmet } from "react-helmet-async";
 
 const Events = () => {
   const { isDarkTheme } = useTheme();
@@ -16,6 +17,25 @@ const Events = () => {
   const { user } = useUser();
   const navigate = useNavigate();
   const [timers, setTimers] = useState({});
+
+  useEffect(() => {
+    return () => {
+      Object.values(timers).forEach(clearTimeout);
+    };
+  }, [timers]);
+
+  //populating the events ID from firestore
+  useEffect(() => {
+    if (user && user.events) {
+      const initialStatus = user.events.reduce((status, event) => {
+        status[event.EventId] = true;
+        return status;
+      }, {});
+      setRsvpStatus(initialStatus);
+    } else {
+      setRsvpStatus({});
+    }
+  }, [user]);
 
   const handleRSVP = async (eventId, title, date) => {
     if (user) {
@@ -27,6 +47,7 @@ const Events = () => {
             RSVP: arrayUnion({
               Event: title,
               "Event Date": date,
+              EventId: eventId,
             }),
           });
         } else {
@@ -35,6 +56,7 @@ const Events = () => {
             RSVP: arrayRemove({
               Event: title,
               "Event Date": date,
+              EventId: eventId,
             }),
           });
         }
@@ -50,13 +72,8 @@ const Events = () => {
         if (timers[eventId]) {
           clearTimeout(timers[eventId]);
         }
-        const newTimer = clearMessage(eventId);
-        setTimers((prevTimer) => ({
-          ...prevTimer,
-          [eventId]: newTimer,
-        }));
+        clearMessage(eventId);
       } catch (error) {
-        console.error("Error updating RSVP status:", error);
         setEventMsg((prevMsg) => ({
           ...prevMsg,
           [eventId]: "Failed to update RSVP. Please try again.",
@@ -66,11 +83,7 @@ const Events = () => {
           clearTimeout(timers[eventId]);
         }
 
-        const newTimer = clearMessage(eventId);
-        setTimers((prevTimer) => ({
-          ...prevTimer,
-          [eventId]: newTimer,
-        }));
+        clearMessage(eventId);
       }
     } else {
       navigate("/user/login");
@@ -78,13 +91,19 @@ const Events = () => {
   };
 
   const clearMessage = (eventId) => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setEventMsg((prevMessages) => {
         const updatedMessages = { ...prevMessages };
         delete updatedMessages[eventId];
         return updatedMessages;
       });
+      setTimers((prevTimers) => {
+        const updatedTimers = { ...prevTimers };
+        delete updatedTimers[eventId];
+        return updatedTimers;
+      });
     }, 3000);
+    setTimers((prevTimers) => ({ ...prevTimers, [eventId]: timer }));
   };
 
   useEffect(() => {
@@ -104,7 +123,15 @@ const Events = () => {
 
   return (
     <div className="events">
-      <h1>Upcoming Events</h1>
+      <Helmet>
+        <title>Events | Eriko Agro</title>
+        <meta
+          name="description"
+          content="Join our events and learn more about sustainable agriculture practices and Eriko Agro initiatives."
+        />
+      </Helmet>
+
+      <h1 id="upcoming-events">Upcoming Events</h1>
       <ul>
         {eventsData.map((event) => (
           <li key={event.id}>

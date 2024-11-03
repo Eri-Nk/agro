@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { auth, db } from "../firebaseConfig.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -32,7 +32,6 @@ export const UserProvider = ({ children }) => {
             });
           } else {
             setUser((userProp) => ({ ...userProp, events: [] }));
-            console.log("No document for user yet");
           }
         });
 

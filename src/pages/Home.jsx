@@ -1,11 +1,20 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div className="home">
+      <Helmet>
+        <title>Eriko Agro - Home</title>
+        <meta
+          name="description"
+          content="Welcome to Eriko Agro, your go-to source for sustainable agriculture insights and resources."
+        />
+      </Helmet>
+
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Welcome to GreenField Farms!</h1>
+          <h1 id="welcome">Welcome to GreenField Farms!</h1>
           <p>Growing the Future, One Seed at a Time.</p>
           <Link to="/about/products-and-services" className="button button-cta">
             Explore our products
@@ -13,17 +22,17 @@ const Home = () => {
         </div>
       </section>
 
-      <h1>Our Priorities</h1>
+      <h1 id="priorities">Our Priorities</h1>
       <div className="container">
         <div className="tile-row">
-          <div className="tile">
+          <div className="tile" id="sustainable-agriculture">
             <h4>Sustainable Agriculture</h4>
             <p>
               Sustainable agriculture practices help preserve the environment,
               improve public health, and ensure future food security.It is
               essential for maintaining the health of our planet while ensuring
               food security. Learn more about sustainable farming practices on
-              the FAO's sustainability page. .
+              the FAO&apos;s sustainability page. .
             </p>
             <a
               href="https://www.fao.org/sustainability/en/"
@@ -35,12 +44,12 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="tile">
+          <div className="tile" id="food-security">
             <h4>Food Security</h4>
             <p>
               Food security ensures that all people, at all times, have physical
               and economic access to sufficient, safe, and nutritious food. For
-              more details, see the FAO's PDF document on food security.
+              more details, see the FAO&apos;s PDF document on food security.
             </p>
 
             <a
@@ -53,7 +62,7 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="tile">
+          <div className="tile" id="climate-change">
             <h4>Tackling Climate Change</h4>
             <p>
               Recognizing the impact of agriculture on our climate, we adhere to

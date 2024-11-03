@@ -77,7 +77,7 @@ const Header = () => {
         />
         <div className="logo">
           <Link to="/home" onClick={closeModal}>
-            Eriko's Agro
+            Eriko Agro
           </Link>
         </div>
       </div>

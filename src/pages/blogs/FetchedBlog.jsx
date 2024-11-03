@@ -19,27 +19,20 @@ const FetchedBlog = () => {
 
   const q = query(colRef, orderBy("createdAt", "desc"));
   useEffect(() => {
-    const unsubBlogs = onSnapshot(
-      q,
-      (snapshot) => {
-        const blogs = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setIsLoading(false);
-        setFetchedBlogs(blogs);
-      },
-      (error) => {
-        console.error("Error fetching snapshot:", error.message);
-      }
-    );
+    const unsubBlogs = onSnapshot(q, (snapshot) => {
+      const blogs = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setIsLoading(false);
+      setFetchedBlogs(blogs);
+    });
     return () => unsubBlogs();
-  }, []);
+  }, [q]);
 
   const handleDeleteBlog = async (id) => {
     const docRef = doc(db, "blogs", id);
     await deleteDoc(docRef);
-    console.log("deleted successfully");
   };
 
   return (

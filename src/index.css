@@ -96,6 +96,7 @@ header {
 .logo {
   padding: 0;
   margin: 0;
+  margin-top: 3.7px;
 }
 
 .logo a {
@@ -1106,7 +1107,7 @@ form {
   display: flex;
   flex-direction: column;
   margin: 1.5em auto;
-  width: 60%;
+  width: 40%;
   justify-content: center;
   padding: 0 1em;
 }
@@ -1246,6 +1247,7 @@ form input[type="checkbox"] {
 .user-info p:nth-child(2) {
   font-size: 1rem;
   margin-bottom: 1em;
+  display: flex;
 }
 
 .user-info p:last-of-type {
@@ -1330,6 +1332,13 @@ form input[type="checkbox"] {
 }
 .text-container input:focus {
   outline: none;
+}
+.search-results {
+  width: 100%;
+}
+
+.search-results h2 {
+  text-align: center;
 }
 
 @media (max-width: 768px) {

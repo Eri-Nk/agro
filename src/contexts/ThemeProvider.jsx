@@ -12,4 +12,5 @@ const ThemeProvider = ({ children }) => {
     </ColorContext.Provider>
   );
 };
+
 export default ThemeProvider;

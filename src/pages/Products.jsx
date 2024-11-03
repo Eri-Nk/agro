@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Breadcrumbs from "../Breadcrumbs";
 import ServicesData from "../data/ServicesData.js";
 import { HashLink } from "react-router-hash-link";
+import { Helmet } from "react-helmet-async";
 
 const Products = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -40,11 +41,17 @@ const Products = () => {
 
   return (
     <div className="products-services-page">
+      <Helmet>
+        <title>Products and Services | Eriko Agro</title>
+        <meta
+          name="description"
+          content="Discover Eriko Agro's range of innovative products and services for sustainable agriculture."
+        />
+      </Helmet>
       <Breadcrumbs />
       <h1>Our Products & Services</h1>
-
       <div className="services-intro">
-        <h2>
+        <h2 id="services">
           We offer professional agricultural services that have evolved over the
           years to meet your needs.
         </h2>
@@ -53,7 +60,6 @@ const Products = () => {
           agricultural potential and resources.
         </p>
       </div>
-
       <div className="services-section">
         {ServicesData.map((service, index) => (
           <div
@@ -91,11 +97,10 @@ const Products = () => {
           ))}
         </div>
       </div>
-
-      <p className="products-intro">
-        We deliver a variety of quality agricultural products tailored to your
-        needs.
-      </p>
+      <p className="products-intro" id="products">
+        tailored to your needs.
+      </p>{" "}
+      We deliver a variety of quality agricultural products
       <div className="products-services-grid">
         <a href="#" className="product-item">
           {/* img source: https://fdbeck.com.au/consultant-insurance/agricultural/ */}
@@ -105,7 +110,11 @@ const Products = () => {
           />
           <h2>Expert Agricultural Consultancy</h2>
           <div className="description">
-            <p> Get professional advice for improving your farm’s yield.</p>
+            <p>
+              {" "}
+              Get professional advice and services for improving your
+              farm&apos;s yield.
+            </p>
           </div>
         </a>
 
@@ -185,7 +194,6 @@ const Products = () => {
           </div>
         </a>
       </div>
-
       <section className="call-to-action">
         <p>For more enquiries about our services, feel free to contact us.</p>
         <HashLink
