@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from "../../firebaseConfig";
+import { db, auth } from "../../firebaseConfig";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -12,6 +12,7 @@ const CreateBlog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const user = auth.currentUser;
 
   const capitalizeFirstLetter = (sentence) => {
     const newSentence = sentence.replace(/\b\w/gi, (sentence) =>
@@ -21,9 +22,13 @@ const CreateBlog = () => {
   };
 
   const handleBlogSubmit = async (e) => {
-    setIsLoading(true);
     e.preventDefault();
     setErrorMessage(null);
+    if (!user) {
+      setErrorMessage("You must be logged in to create a blog post.");
+      return;
+    }
+    setIsLoading(true);
 
     const BlogData = {
       title: capitalizeFirstLetter(title),
@@ -31,11 +36,11 @@ const CreateBlog = () => {
       lastName: capitalizeFirstLetter(lastName),
       content: blogContent,
       createdAt: serverTimestamp(),
-      authorId: user.uid,
+      authorId: user ? user.uid : null,
     };
     try {
       await addDoc(collection(db, "blogs"), BlogData);
-      navigate("/blogs");
+      navigate("/blogs/blog-component");
       setTitle("");
       setFirstName("");
       setLastName("");
@@ -47,13 +52,14 @@ const CreateBlog = () => {
     }
   };
   return (
-    <>
+    <div className="create-blog">
       <Helmet>
         <title>Create Blog | Eriko Agro</title>
       </Helmet>
       <form onSubmit={handleBlogSubmit}>
+        <h1>Create Blog</h1>
         <div>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Blog Title</label>
           <textarea
             id="title"
             value={title}
@@ -63,7 +69,7 @@ const CreateBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">Author FirstName</label>
           <input
             type="text"
             value={firstName}
@@ -73,7 +79,7 @@ const CreateBlog = () => {
         </div>
 
         <div>
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Author LastName</label>
           <input
             type="text"
             required
@@ -94,9 +100,9 @@ const CreateBlog = () => {
         <button type="submit" className="button-cta">
           {isLoading ? <span className="spinner"></span> : "submit"}
         </button>
-        {errorMessage && <p>{errorMessage}</p>}
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </form>
-    </>
+    </div>
   );
 };
 

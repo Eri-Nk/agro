@@ -15,7 +15,6 @@ const FetchedBlog = () => {
   const colRef = collection(db, "blogs");
   const [fetchedBlogs, setFetchedBlogs] = useState([]);
   const { user } = useUser();
-  const [isLoading, setIsLoading] = useState(true);
 
   const q = query(colRef, orderBy("createdAt", "desc"));
   useEffect(() => {
@@ -24,27 +23,23 @@ const FetchedBlog = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setIsLoading(false);
       setFetchedBlogs(blogs);
     });
     return () => unsubBlogs();
   }, [q]);
 
   const handleDeleteBlog = async (id) => {
-    const docRef = doc(db, "blogs", id);
-    await deleteDoc(docRef);
+    try {
+      const docRef = doc(db, "blogs", id);
+      await deleteDoc(docRef);
+    } catch (error) {
+      setErrorMessage("An error occurred while trying to delete the blog");
+    }
   };
 
   return (
     <div className="user-blog">
-      {isLoading ? (
-        <div className="skeleton-loader">
-          <div className="skeleton-text title"></div>
-          <div className="skeleton-text body"></div>
-          <div className="skeleton-text author"></div>
-          <div className="skeleton-text date"></div>
-        </div>
-      ) : fetchedBlogs.length > 0 ? (
+      {fetchedBlogs.length > 0 ? (
         <ul>
           {fetchedBlogs.map((blog) => (
             <li key={blog.id}>

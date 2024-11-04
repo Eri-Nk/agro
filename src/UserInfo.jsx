@@ -56,13 +56,17 @@ const UserInfo = ({ userInfoVisible, setUserInfoVisible }) => {
       additionalStyles={userInfoStyles}
     >
       <div className="user-info">
-        <p>
-          Hello, {user.firstName} {user.lastName}
-        </p>
-        <p>
-          {timeMsg} <BsEmojiSunglasses style={{ paddingLeft: "10px" }} />
-        </p>
-        <p>{user.email}</p>
+        {user && (
+          <>
+            <p>
+              Hello, {user.firstName} {user.lastName}
+            </p>
+            <p>
+              {timeMsg} <BsEmojiSunglasses style={{ paddingLeft: "10px" }} />
+            </p>
+            <p>{user.email}</p>
+          </>
+        )}
 
         {/* Display events if available */}
         {user.events && user.events.length > 0 && (

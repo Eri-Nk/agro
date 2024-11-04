@@ -14,10 +14,12 @@ export const UserProvider = ({ children }) => {
       setUser(null); // Clear user state if offline
       return;
     }
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (firebaseUser) => {
+      let unsubUser = null;
+
       if (firebaseUser) {
         const userDocRef = doc(db, "users", firebaseUser.uid);
-        const unsubUser = onSnapshot(userDocRef, (docSnapshot) => {
+        unsubUser = onSnapshot(userDocRef, (docSnapshot) => {
           if (docSnapshot.exists()) {
             const userData = docSnapshot.data();
             const events = userData?.RSVP || [];
@@ -35,14 +37,18 @@ export const UserProvider = ({ children }) => {
           }
         });
 
-        return () => unsubUser();
+        return () => {
+          unsubUser();
+        };
       } else {
         // User is signed out, clear the user state
         setUser(null);
       }
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribeAuth();
+    };
   }, []);
 
   return (

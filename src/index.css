@@ -1102,6 +1102,13 @@ header {
   justify-content: flex-end;
 }
 
+.create-blog h1 {
+  text-align: center;
+}
+.create-blog div {
+  margin-top: 10px;
+}
+
 /* login page,forms */
 form {
   display: flex;
