@@ -88,6 +88,7 @@ const Login = () => {
               onChange={handleInputChange(setPassword)}
               autoComplete="current-password"
               required
+              id="password"
             />
             <span className="password-eye" onClick={togglePasswordVisibility}>
               {showPassword ? <LuEye /> : <PiEyeClosedThin />}
@@ -101,7 +102,7 @@ const Login = () => {
             name="remeberMe"
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
-            id="checkbox"
+            id="rememberMe"
           />
           <label htmlFor="rememberMe">Remember Me</label>
         </div>
