@@ -50,6 +50,7 @@ const ForgotPassword = () => {
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
           required
+          id="email"
         />
         <button type="submit" className="button-cta">
           {isLoading ? <span className="spinner"></span> : "Reset Password"}

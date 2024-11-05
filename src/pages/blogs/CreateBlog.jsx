@@ -74,6 +74,7 @@ const CreateBlog = () => {
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            id="firstName"
             required
           />
         </div>
@@ -85,6 +86,7 @@ const CreateBlog = () => {
             required
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            id="lastName"
           />
         </div>
 

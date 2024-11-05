@@ -74,6 +74,7 @@ const Login = () => {
             onChange={handleInputChange(setEmail)}
             autoComplete="email"
             required
+            id="email"
           />
         </div>
 
@@ -100,6 +101,7 @@ const Login = () => {
             name="remeberMe"
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
+            id="checkbox"
           />
           <label htmlFor="rememberMe">Remember Me</label>
         </div>
