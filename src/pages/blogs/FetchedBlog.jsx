@@ -14,6 +14,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 const FetchedBlog = () => {
   const colRef = collection(db, "blogs");
   const [fetchedBlogs, setFetchedBlogs] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   const { user } = useUser();
 
   const q = query(colRef, orderBy("createdAt", "desc"));
@@ -29,6 +30,7 @@ const FetchedBlog = () => {
   }, [q]);
 
   const handleDeleteBlog = async (id) => {
+    setErrorMessage(null);
     try {
       const docRef = doc(db, "blogs", id);
       await deleteDoc(docRef);
@@ -80,6 +82,7 @@ const FetchedBlog = () => {
       ) : (
         <p>No User Blog yet</p>
       )}
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </div>
   );
 };

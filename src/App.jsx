@@ -27,7 +27,7 @@ function App() {
       <Header />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about/agro-insights" element={<AgroInsights />} />
           <Route path="/about/history" element={<History />} />
           <Route path="/about/products-and-services" element={<Products />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path="/fun-facts" element={<FunFacts />} />
           <Route path="/blogs/blog-component" element={<BlogComponent />} />
           <Route path="/blogs/create-blog" element={<CreateBlog />} />
-          <Route path="/home" element={<Navigate to="/" />} />
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/user/login" element={<Login />} />
           <Route path="/user/signup" element={<Signup />} />
           <Route path="/user/forgot-password" element={<ForgetPassword />} />

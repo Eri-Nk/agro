@@ -98,9 +98,9 @@ const Products = () => {
         </div>
       </div>
       <p className="products-intro" id="products">
-        tailored to your needs.
-      </p>{" "}
-      We deliver a variety of quality agricultural products
+        We deliver a variety of quality agricultural products tailored to your
+        needs.
+      </p>
       <div className="products-services-grid">
         <a href="#" className="product-item">
           {/* img source: https://fdbeck.com.au/consultant-insurance/agricultural/ */}
@@ -111,7 +111,6 @@ const Products = () => {
           <h2>Expert Agricultural Consultancy</h2>
           <div className="description">
             <p>
-              {" "}
               Get professional advice and services for improving your
               farm&apos;s yield.
             </p>
@@ -195,10 +194,13 @@ const Products = () => {
         </a>
       </div>
       <section className="call-to-action">
-        <p>For more enquiries about our services, feel free to contact us.</p>
+        <p>
+          For more enquiries about our services, feel free to contact us or pay
+          us a visit.
+        </p>
         <HashLink
           smooth
-          to="/about/agro-insights#weather-section"
+          to="/about/agro-insights#location"
           className="button button-cta"
         >
           Get In Touch

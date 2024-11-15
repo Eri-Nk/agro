@@ -15,8 +15,8 @@ const CreateBlog = () => {
   const user = auth.currentUser;
 
   const capitalizeFirstLetter = (sentence) => {
-    const newSentence = sentence.replace(/\b\w/gi, (sentence) =>
-      sentence.toUpperCase()
+    const newSentence = sentence.replace(/\b\w/gi, (boundaryWord) =>
+      boundaryWord.toUpperCase()
     );
     return newSentence;
   };
