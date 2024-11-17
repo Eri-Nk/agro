@@ -1,27 +1,54 @@
 import { useRef, useState, useEffect } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import ModalComponent from "./ModalComponenet";
 import { useTheme } from "./contexts/ThemeProvider";
 import debounce from "lodash.debounce";
 import SearchComponent from "./pages/SearchComponent.jsx";
 import KeywordData from "./data/KeywordData.js";
+import { useNavigate } from "react-router-dom";
 
 const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
   const { isDarkTheme } = useTheme();
-  const inputRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const debouncedFunctionRef = useRef(null);
+  const inputRef = useRef(null);
+  const navigate = useNavigate();
+  const [isListFocused, setIsListFocused] = useState(false);
 
   const closeSearchModal = () => {
     setIsSearchModalOpen(false);
   };
+  const handleFirstResultNavigation = () => {
+    if (!isListFocused) {
+      if (filteredResults.length > 0) {
+        const firstResults = filteredResults[0];
+        navigate(`${firstResults.link}#${firstResults.id}`);
 
-  const handleInput = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+        closeSearchModal();
+
+        setTimeout(() => {
+          const element = document.getElementById(firstResults.id);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        alert("No results found");
+      }
     }
   };
+
+  useEffect(() => {
+    if (isSearchModalOpen) {
+      const timeout = setTimeout(() => {
+        if (inputRef.current && !isListFocused) {
+          inputRef.current.focus();
+        }
+      }, 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [isSearchModalOpen, isListFocused]);
 
   useEffect(() => {
     debouncedFunctionRef.current = debounce((term) => {
@@ -74,8 +101,6 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
     >
       <div className="search-container">
         <div className="text-container">
-          <FaMagnifyingGlass onClick={handleInput} />
-
           <input
             type="text"
             value={searchTerm}
@@ -83,13 +108,30 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
             placeholder="search for keywords"
             ref={inputRef}
             spellCheck="false"
+            name="search-text"
+            autoComplete="off"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setIsListFocused(false);
+                handleFirstResultNavigation();
+              }
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (filteredResults.length > 0) {
+                  setIsListFocused(true);
+                }
+              }
+            }}
           />
+          <FaArrowRight onClick={handleFirstResultNavigation} />
         </div>
 
         <SearchComponent
           searchResults={filteredResults}
           searchTerm={searchTerm}
           closeSearchModal={closeSearchModal}
+          isListFocused={isListFocused}
+          setIsListFocused={setIsListFocused}
         />
       </div>
     </ModalComponent>

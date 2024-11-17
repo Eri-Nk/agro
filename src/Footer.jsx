@@ -14,7 +14,7 @@ const Footer = () => {
           <p>123-456-789</p>
           <p>
             Find us at:
-            <HashLink smooth to="/about/agro-insights#weather-section">
+            <HashLink smooth to="/about/agro-insights#location">
               Our Location
             </HashLink>
           </p>

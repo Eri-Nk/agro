@@ -842,8 +842,21 @@ header {
   margin: 1.5em 0;
 }
 
+#location,
+#services,
+#welcome,
+#fun-facts,
+#history,
+#progress,
+#services,
+#products,
+#sustainable-agriculture,
+#blog,
+#food-security,
+#climate-change,
+#priorities,
 #weather-section {
-  scroll-margin-top: 110px;
+  scroll-margin-top: 50px;
 }
 
 @media (max-width: 600px) {
