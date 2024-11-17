@@ -20,29 +20,33 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
     setIsSearchModalOpen(false);
   };
   const handleFirstResultNavigation = () => {
-    if (filteredResults.length > 0) {
-      const firstResults = filteredResults[0];
-      navigate(firstResults.link);
-      closeSearchModal();
+    if (!isListFocused) {
+      if (filteredResults.length > 0) {
+        const firstResults = filteredResults[0];
+        navigate(`${firstResults.link}#${firstResults.id}`);
 
-      setTimeout(() => {
-        const element = document.getElementById(firstResults.id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
-      alert("No results found");
+        closeSearchModal();
+
+        setTimeout(() => {
+          const element = document.getElementById(firstResults.id);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        alert("No results found");
+      }
     }
   };
 
   useEffect(() => {
     if (isSearchModalOpen) {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         if (inputRef.current && !isListFocused) {
           inputRef.current.focus();
         }
-      }, 0);
+      }, 50);
+      return () => clearTimeout(timeout);
     }
   }, [isSearchModalOpen, isListFocused]);
 
@@ -107,10 +111,15 @@ const Search = ({ isSearchModalOpen, setIsSearchModalOpen }) => {
             name="search-text"
             autoComplete="off"
             onKeyDown={(e) => {
-              if (e.key === "Enter") handleFirstResultNavigation();
+              if (e.key === "Enter") {
+                setIsListFocused(false);
+                handleFirstResultNavigation();
+              }
               if (e.key === "ArrowDown") {
                 e.preventDefault();
-                setIsListFocused(true);
+                if (filteredResults.length > 0) {
+                  setIsListFocused(true);
+                }
               }
             }}
           />
