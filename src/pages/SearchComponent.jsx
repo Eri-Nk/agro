@@ -69,7 +69,6 @@ const SearchComponent = ({
               onBlur={handleListBlur}
               onKeyDown={(e) => {
                 if (isListFocused) handleKeyDown(e);
-                handleKeyDown(e);
               }}
             >
               {searchResults.map((result, index) => (

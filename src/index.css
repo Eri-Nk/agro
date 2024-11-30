@@ -72,7 +72,7 @@ a {
   padding: 0;
   margin: 0;
 }
-
+/* header */
 header {
   padding: 0.5em 0.7em;
   display: flex;
@@ -1128,6 +1128,7 @@ form {
   flex-direction: column;
   margin: 1.5em auto;
   width: 40%;
+  max-width: 500px;
   justify-content: center;
   padding: 0 1em;
 }
@@ -1359,6 +1360,14 @@ form input[type="checkbox"] {
 
 .search-results h2 {
   text-align: center;
+}
+
+.search-results li {
+  padding: 2px;
+}
+
+.search-results li:hover {
+  background-color: #ebebeb;
 }
 
 @media (max-width: 768px) {

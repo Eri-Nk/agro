@@ -36,6 +36,9 @@ const FetchedBlog = () => {
       await deleteDoc(docRef);
     } catch (error) {
       setErrorMessage("An error occurred while trying to delete the blog");
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 7000);
     }
   };
 
