@@ -1,10 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 const NavComp = ({ isMenuOpen, closeModal }) => {
   const [isAboutOpen, setisAboutOpen] = useState(false);
   const nestedAboutLinksRef = useRef(null);
+
+  const toggleAbout = () => {
+    setisAboutOpen((prev) => !prev);
+  };
 
   return (
     <nav>
@@ -22,6 +26,7 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
           <span>About</span>
           <IoMdArrowDropdown
             className={`arrow ${isAboutOpen ? "show-inverse-about" : ""}`}
+            onClick={toggleAbout}
           />
 
           <ul

@@ -135,7 +135,7 @@ const Header = () => {
               color: "#def249",
               display: isDarkTheme ? "none" : "block",
               cursor: "pointer",
-              paddingLeft: "0.5em",
+              paddingLeft: "7px",
             }}
           />
           <IoIosSunny

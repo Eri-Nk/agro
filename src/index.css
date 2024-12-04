@@ -145,7 +145,7 @@ header {
   padding: 0 0.2em;
 }
 
-.arrow.show-inverse-about {
+.about:hover .arrow.show-inverse-about {
   transform: rotate(180deg);
 }
 
@@ -1377,6 +1377,10 @@ form input[type="checkbox"] {
   }
   .text-container input {
     min-width: 100px;
+  }
+  .search-results ul {
+    margin: 0;
+    padding: 0;
   }
 }
 
