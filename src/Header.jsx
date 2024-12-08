@@ -118,7 +118,7 @@ const Header = () => {
           style={{
             height: "30px",
             cursor: "pointer",
-            padding: "0 0.5em",
+            padding: "0 7px",
           }}
           onClick={toggleSearchModal}
         />
@@ -135,7 +135,8 @@ const Header = () => {
               color: "#def249",
               display: isDarkTheme ? "none" : "block",
               cursor: "pointer",
-              paddingLeft: "7px",
+              paddingRight: "5px",
+              paddingLeft: "4px",
             }}
           />
           <IoIosSunny

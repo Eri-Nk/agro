@@ -1365,9 +1365,8 @@ form input[type="checkbox"] {
 .search-results li {
   padding: 2px;
 }
-
 .search-results li:hover {
-  background-color: #ebebeb;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -1381,6 +1380,10 @@ form input[type="checkbox"] {
   .search-results ul {
     margin: 0;
     padding: 0;
+  }
+  .search-results li {
+    padding: 0;
+    margin: 2px 0;
   }
 }
 
