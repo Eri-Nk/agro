@@ -14,7 +14,7 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
     <nav>
       <ul className={`navbar ${isMenuOpen ? "show-nav" : ""}`}>
         <li>
-          <NavLink to="/" onClick={closeModal}>
+          <NavLink to="/home" onClick={closeModal}>
             Home
           </NavLink>
         </li>

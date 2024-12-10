@@ -80,13 +80,6 @@ const AgroInsights = () => {
           </section>
         )}
 
-        <div className="call-to-action">
-          <h3>You can also explore some of our products and services</h3>
-          <Link to="/about/products-and-services" className="button button-cta">
-            Explore
-          </Link>
-        </div>
-
         <section id="map-section" className="map-section">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31804.780687660794!2d7.036811916818454!3d4.838950300725542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069cd41a92a7d39%3A0xa5c51adf45dadfac!2sElelenwo%2C%20Port%20Harcourt%2C%20Rivers!5e0!3m2!1sen!2sng!4v1726493903469!5m2!1sen!2sng"
@@ -99,6 +92,12 @@ const AgroInsights = () => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </section>
+      </div>
+      <div className="call-to-action">
+        <h3>You can also explore some of our products and services</h3>
+        <Link to="/about/products-and-services" className="button button-cta">
+          Explore
+        </Link>
       </div>
     </div>
   );
