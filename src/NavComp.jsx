@@ -18,15 +18,10 @@ const NavComp = ({ isMenuOpen, closeModal }) => {
             Home
           </NavLink>
         </li>
-        <li
-          className="about"
-          onMouseEnter={() => setisAboutOpen(true)}
-          onMouseLeave={() => setisAboutOpen(false)}
-        >
+        <li className="about" onClick={toggleAbout}>
           <span>About</span>
           <IoMdArrowDropdown
             className={`arrow ${isAboutOpen ? "show-inverse-about" : ""}`}
-            onClick={toggleAbout}
           />
 
           <ul
