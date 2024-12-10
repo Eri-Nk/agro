@@ -145,7 +145,7 @@ header {
   padding: 0 0.2em;
 }
 
-.about:hover .arrow.show-inverse-about {
+.arrow.show-inverse-about {
   transform: rotate(180deg);
 }
 
