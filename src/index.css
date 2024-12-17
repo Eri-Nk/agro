@@ -87,6 +87,38 @@ header {
   z-index: 100;
 }
 
+/* tooltip */
+.login .welcome-message {
+  position: relative;
+  overflow: visible;
+}
+.tooltip-container {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  background-color: #444;
+  color: #fff;
+  padding: 10px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.tooltip-container::before {
+  content: "";
+  position: absolute;
+  bottom: 100%; /* At the top of the tooltip */
+  left: 50%;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent #444 transparent;
+}
+.tooltip-container p {
+  padding-top: 15px;
+}
+
 .header-first {
   display: flex;
   justify-content: flex-start;
@@ -1265,15 +1297,26 @@ form input[type="checkbox"] {
   margin-bottom: 0.5em;
 }
 
-.user-info p:nth-child(2) {
+.user-info .greetings {
   font-size: 1rem;
   margin-bottom: 1em;
   display: flex;
+  align-items: center;
 }
 
-.user-info p:last-of-type {
+.user-info .user-email {
   font-size: 0.9rem;
   margin-bottom: 2em;
+}
+.user-info .rsvp-message {
+  color: white;
+}
+.user-info .rsvp-message a {
+  font-style: italic;
+  font-weight: bold;
+}
+.user-info .rsvp-message a:hover {
+  text-decoration: underline;
 }
 
 /* user blog.....some styles present in blog */

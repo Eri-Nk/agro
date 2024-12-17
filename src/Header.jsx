@@ -2,7 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState, useEffect } from "react";
 import { FaMoon } from "react-icons/fa";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { RxMagnifyingGlass } from "react-icons/rx";
 import { IoIosSunny } from "react-icons/io";
 import ModalComponent from "./ModalComponenet";
 import NavComp from "./NavComp";
@@ -10,6 +10,7 @@ import { useTheme } from "./contexts/ThemeProvider";
 import { useUser } from "./contexts/UserProvider";
 import UserInfo from "./UserInfo";
 import Search from "./Search";
+import Tooltip from "./Tooltip";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,9 +20,15 @@ const Header = () => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { user } = useUser();
 
-  const handleResize = () => {
-    setIsLargeScreen(window.innerWidth >= 992);
-  };
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+
+  useEffect(() => {
+    if (user && user.firstName) {
+      setTooltipVisible(true);
+      const timer = setTimeout(() => setTooltipVisible(false), 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [user]);
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -33,6 +40,14 @@ const Header = () => {
       setIsMenuOpen(false);
     }
   }, [isLargeScreen]);
+
+  const handleToggleTooltip = () => {
+    setTooltipVisible(!tooltipVisible);
+  };
+
+  const handleResize = () => {
+    setIsLargeScreen(window.innerWidth >= 992);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen((isMenuOpen) => !isMenuOpen);
@@ -96,8 +111,11 @@ const Header = () => {
 
       <div className="header-end">
         <div className="login">
-          {user ? (
-            <div style={{ color: "#e8dfdf", fontWeight: "bold" }}>
+          {user && user.firstName ? (
+            <div
+              style={{ color: "#e8dfdf", fontWeight: "bold" }}
+              className="welcome-message"
+            >
               Welcome,{" "}
               <span onClick={toggleUserInfo} style={{ cursor: "pointer" }}>
                 {user.firstName}
@@ -108,17 +126,19 @@ const Header = () => {
                   setUserInfoVisible={setUserInfoVisible}
                 />
               )}
+              {tooltipVisible && <Tooltip closeTooltip={handleToggleTooltip} />}
             </div>
           ) : (
             <NavLink to="/user/login">Sign in</NavLink>
           )}
         </div>
-        <FaMagnifyingGlass
+        <RxMagnifyingGlass
           className="search-lens"
           style={{
             height: "30px",
             cursor: "pointer",
             padding: "0 7px",
+            fontSize: "20px",
           }}
           onClick={toggleSearchModal}
         />

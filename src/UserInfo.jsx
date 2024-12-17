@@ -5,6 +5,7 @@ import { useUser } from "./contexts/UserProvider.jsx";
 import { useTheme } from "./contexts/ThemeProvider.jsx";
 import { BsEmojiSunglasses } from "react-icons/bs";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const UserInfo = ({ userInfoVisible, setUserInfoVisible }) => {
   const [timeMsg, setTimeMsg] = useState(null);
@@ -57,19 +58,19 @@ const UserInfo = ({ userInfoVisible, setUserInfoVisible }) => {
     >
       <div className="user-info">
         {user && (
-          <>
+          <div>
             <p>
               Hello, {user.firstName} {user.lastName}
             </p>
-            <p>
+            <p className="greetings">
               {timeMsg} <BsEmojiSunglasses style={{ paddingLeft: "10px" }} />
             </p>
-            <p>{user.email}</p>
-          </>
+            <p className="user-email">{user.email}</p>
+          </div>
         )}
 
         {/* Display events if available */}
-        {user.events && user.events.length > 0 && (
+        {user.events && user.events.length > 0 ? (
           <div>
             <h3>RSVP&apos;d Events:</h3>
             <ul>
@@ -80,7 +81,17 @@ const UserInfo = ({ userInfoVisible, setUserInfoVisible }) => {
               ))}
             </ul>
           </div>
+        ) : (
+          <p>You currently have no RSVP&apos;d events.</p>
         )}
+
+        <p className="rsvp-message">
+          Want to RSVP for more events? Check out our{" "}
+          <Link to={"/events"} onClick={closeModal}>
+            Events
+          </Link>{" "}
+          page!
+        </p>
 
         <div className="button button-cta" onClick={signOutUser}>
           Sign Out
