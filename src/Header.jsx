@@ -22,19 +22,22 @@ const Header = () => {
 
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
+  // tooltip useffect
   useEffect(() => {
-    if (user && user.firstName) {
+    if (user?.firstName) {
       setTooltipVisible(true);
       const timer = setTimeout(() => setTooltipVisible(false), 10000);
       return () => clearTimeout(timer);
     }
-  }, [user]);
+  }, [user?.firstName]);
 
+  //automatic responsive header
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  //automatic responsive header
   useEffect(() => {
     if (isLargeScreen) {
       setIsMenuOpen(false);
@@ -111,7 +114,7 @@ const Header = () => {
 
       <div className="header-end">
         <div className="login">
-          {user && user.firstName ? (
+          {user?.firstName ? (
             <div
               style={{ color: "#e8dfdf", fontWeight: "bold" }}
               className="welcome-message"
