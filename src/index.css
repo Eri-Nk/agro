@@ -29,7 +29,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", sans-serif, Geneva, Tahoma;
   font-style: normal;
   padding: 1.5em;
   padding-top: 3em;
