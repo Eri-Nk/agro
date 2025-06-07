@@ -1202,6 +1202,8 @@ form textarea {
   padding: 10px;
   width: 100%;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 form #title {
   height: 60px;
@@ -1211,13 +1213,6 @@ form #title {
 form #blog-content {
   height: 300px;
   font-family: inherit;
-}
-
-form input:focus,
-form textarea:focus {
-  outline: none;
-  /* background-color: #ccc;
-  color: #201f1f; */
 }
 
 form a:hover {
