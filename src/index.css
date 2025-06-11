@@ -1205,6 +1205,9 @@ form textarea {
   background-color: white;
   color: black;
 }
+form input:focus {
+  outline: none;
+}
 form #title {
   height: 60px;
   font-family: inherit;
